@@ -1,11 +1,22 @@
 import AuctionCarousel from "../components/AuctionCarousel";
 import auction1 from "../assets/auction1.png";
 import like from "../assets/like.svg";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { app } from "../firebase";
+import Loginpage from "./Loginpage";
+import { redirect } from "react-router-dom";
 
 const AuctionPage = () => {
+  const auth = getAuth(app);
+
+  const user = onAuthStateChanged(auth, (user) => {
+    console.log("user status changed:", user);
+    return user;
+  });
   return (
     <>
-      {true ? (
+      {user != null ? (
         <section>
           <AuctionCarousel />
           <div className="mx-2 md:mx-16 my-10">
@@ -87,7 +98,7 @@ const AuctionPage = () => {
           </div>
         </section>
       ) : (
-        <Signin />
+        <h3>You have to login first</h3>
       )}
     </>
   );
