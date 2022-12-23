@@ -16,7 +16,7 @@ const AuctionPage = () => {
   });
   return (
     <>
-      {user != null ? (
+      {user ? (
         <section>
           <AuctionCarousel />
           <div className="mx-2 md:mx-16 my-10">
