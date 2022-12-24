@@ -12,7 +12,6 @@ getDocs(collRef).then((snapshot) => {
   snapshot.docs.forEach((doc) => {
     products.push({ ...doc.data(), id: doc.id });
   });
-  console.log(products);
 });
 const Loginpage = () => {
   const auth = getAuth(app);

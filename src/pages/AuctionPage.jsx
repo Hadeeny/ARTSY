@@ -6,17 +6,19 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { app } from "../firebase";
 import Loginpage from "./Loginpage";
 import { redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AuctionPage = () => {
   const auth = getAuth(app);
 
   const user = onAuthStateChanged(auth, (user) => {
-    console.log("user status changed:", user);
     return user;
   });
+
+  const currentUser = auth.currentUser;
   return (
     <>
-      {user ? (
+      {currentUser !== null ? (
         <section>
           <AuctionCarousel />
           <div className="mx-2 md:mx-16 my-10">
@@ -98,7 +100,13 @@ const AuctionPage = () => {
           </div>
         </section>
       ) : (
-        <h3>You have to login first</h3>
+        <h3>
+          You have to{" "}
+          <Link to={"/login"}>
+            <span className="text-blue-600">login</span>
+          </Link>{" "}
+          first
+        </h3>
       )}
     </>
   );

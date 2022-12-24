@@ -1,10 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { products } from "./products";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
+const db = getFirestore();
 const initialState = {
   products,
   cartItems: [],
+  chat: [],
 };
+
+export const getChats = createAsyncThunk("get_charts", async (_, thunkAPI) => {
+  try {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    querySnapshot.docs.forEach((doc) => {
+      const messages = [];
+      messages.push({ ...doc.data(), id: doc.id });
+    });
+    console.log(messages);
+  } catch (error) {
+    const message =
+      error.respose && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    return thunkAPI.rejectWithValue(message);
+  }
+});
 
 export const productSlice = createSlice({
   name: "allproducts",
@@ -56,9 +77,32 @@ export const productSlice = createSlice({
       console.log(action.payload);
     },
   },
-  extraReducers: () => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getChats.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getChats.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+        // const querySnapshot = action.payload;
+        // querySnapshot.forEach((doc) => {
+        //   console.log(`${doc.id} => ${doc.data()}`);
+        //   // state.chat.push({ ...doc.data(), id: doc.id });
+        // });
+      })
+      .addCase(getChats.rejected, (state, action) => {
+        state.loading = false;
+        state.error = true;
+        state.message = action.payload;
+      });
+  },
 });
 
 export const { increment, decrement, addToCart, removeItem, increaseItem } =
   productSlice.actions;
 export default productSlice.reducer;
+
+// querySnapshot.forEach((doc) => {
+//   return { ...doc.data(), id: doc.id };
+// });

@@ -16,7 +16,7 @@ const Livebid = ({selectedId, auction, handleClose}) => {
     initial={{opacity:0, scale: 0}} 
     animate={{opacity:1, scale:1}} 
     transition={{duration: 0.4}} 
-    className="md:px-16 h-screen absolute top-10 px-4 my-4">  
+    className="md:px-16 z-[400] h-screen absolute top-10 px-4 my-4">  
       <motion.div className="flex border border-black">
         <div className="w-full md:w-1/2 relative">
           <div className='w-full'>
