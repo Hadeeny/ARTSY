@@ -35,11 +35,11 @@ totalprice = addDecimals(
       <div className="flex">
         {/* Customer address */}
         <motion.form initial={{opacity:0, scale: 0.8}} animate={{opacity:1, scale:1}} transition={{duration: 1.3}} 
-        className="w-full px-4 space-y-6 md:w-1/2">
+        className="w-full px-4 space-y-4 md:w-1/2">
           <div className="flex flex-col gap-y-2 w-full  md:w-11/12">
             <label>Your Email</label>
             <input
-              className=" py-3 px-4 outline-none rounded-md bg-gray-200"
+              className=" py-3 px-4 outline-none rounded-md bg-gray-100"
               type="text"
               placeholder="oluwasegunadeniyi064@gmail.com"
             />
@@ -47,7 +47,7 @@ totalprice = addDecimals(
           <div className="flex flex-col gap-y-2 w-full md:w-11/12">
             <label>Your fullname</label>
             <input
-              className=" py-3 px-4 outline-none rounded-md bg-gray-200"
+              className=" py-3 px-4 outline-none rounded-md bg-gray-100"
               type="text"
               placeholder="Oluwasegun Adeniyi"
             />
@@ -55,14 +55,14 @@ totalprice = addDecimals(
           <div className="flex flex-col gap-y-2 w-full md:w-11/12">
             <label>Choose a wallet</label>
             <input
-              className=" py-3 px-4 outline-none rounded-md bg-gray-200"
+              className=" py-3 px-4 outline-none rounded-md bg-gray-100"
               type="text"
             />
           </div>
           <div className="flex flex-col gap-y-2 w-full md:w-11/12">
             <label>City</label>
             <input
-              className=" py-3 px-4 outline-none rounded-md bg-gray-200"
+              className=" py-3 px-4 outline-none rounded-md bg-gray-100"
               type="text"
             />
           </div>
@@ -70,14 +70,14 @@ totalprice = addDecimals(
             <div className="flex flex-col gap-y-2 ">
               <label>Country</label>
               <input
-                className=" py-3 px-4 outline-none w-full rounded-md bg-gray-200"
+                className=" py-3 px-4 outline-none w-full rounded-md bg-gray-100"
                 type="text"
               />
             </div>
             <div className="flex flex-col gap-y-2 ">
               <label>postal code</label>
               <input
-                className=" py-3 px-4 outline-none w-full rounded-md bg-gray-200"
+                className=" py-3 px-4 outline-none w-full rounded-md bg-gray-100"
                 type="text"
                 placeholder="001001"
               />
@@ -86,7 +86,7 @@ totalprice = addDecimals(
           <div className="flex flex-col gap-y-2 w-full md:w-11/12">
             <label>Phone number</label>
             <input
-              className=" py-3 px-4 mb-10 outline-none rounded-md bg-gray-200"
+              className=" py-3 px-4 mb-10 outline-none rounded-md bg-gray-100"
               type="text"
               placeholder="11-203-396"
             />
@@ -105,14 +105,14 @@ totalprice = addDecimals(
             return (
               <div
                 key={i}
-                className="flex w-full py-8 border-t-1 border-t justify-between"
+                className="flex w-full py-4 md:py-8 border-t-1 border-t justify-between"
               >
-                <div className="flex space-x-8">
-                  <div className="w-[10rem]">
+                <div className="flex items-center space-x-8">
+                  <div className="w-[5rem]">
                     <motion.img src={item.image} className="w-full" />
                   </div>
                   <div className="flex flex-col justify-between">
-                    <h3 className="text-2xl font-semibold">{item.title}</h3>
+                    <h3 className="text-lg md:text-xl font-semibold">{item.title}</h3>
                     <p>Clearamane</p>
                     <p>Size: 400ft</p>
                     <div className="flex space-x-8 text-2xl">

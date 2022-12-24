@@ -41,18 +41,18 @@ const Cartpage = () => {
             // <AnimatePresence>
             <motion.div
               key={i}
-              className="flex flex-col divide-y-2 border-black"
+              className="flex px-4 flex-col divide-y-2 border-black"
             >
               {/* first cart item */}
               <motion.div
                 exit={{ x: 570, transition: { duration: 0.5 } }}
-                className="flex w-full py-8 border-t-1 border-t justify-between"
+                className="flex w-full md:py-8 py-4 border-t-1 border-t justify-between"
               >
-                <div className="flex space-x-8">
+                <div className="flex items-center space-x-8">
                   <motion.div
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className="w-[10rem]"
+                    className="w-[5rem]"
                   >
                     <Link to={`/marketplace/details/${item.id}`}>
                       <img src={item.image} className="w-full" />
@@ -60,7 +60,7 @@ const Cartpage = () => {
                   </motion.div>
                   <div className="flex flex-col justify-between">
                     <Link to={`/marketplace/details/${item.id}`}>
-                      <h3 className="text-2xl font-semibold">{item.title}</h3>
+                      <h3 className="text-lg md:text-xl font-semibold">{item.title}</h3>
                     </Link>
                     <p>{item.title}</p>
                     <p>Size: 200ft</p>
@@ -80,7 +80,7 @@ const Cartpage = () => {
                     onClick={() => {
                       dispatch(removeItem(item.id));
                     }}
-                    className="w-10 cursor-pointer h-10 flex justify-center items-center rounded-full border border-black"
+                    className="w-8 cursor-pointer h-8 flex justify-center items-center rounded-full border border-black"
                   >
                     X
                   </div>

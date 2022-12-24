@@ -13,9 +13,18 @@ import { getChats } from "../features/productSlice";
 const Users = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getChats());
-  }, [dispatch]);
+  //   useEffect(() => {
+  //     dispatch(getChats());
+  //   }, [dispatch]);
+  //   const doSom = () => {
+  //     const arr = [];
+  //     arr.push(2);
+  //     arr.push(4);
+  //     return arr;
+  //   };
+
+  //   const seg = doSom();
+  //   console.log(seg);
 
   const auth = getAuth(app);
   //   const db = getFirestore();

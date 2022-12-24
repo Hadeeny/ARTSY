@@ -47,14 +47,14 @@ const totalItems = cartItems.reduce((a, b)=>{
             <div className="flex flex-col gap-y-2 w-full">
               <label>Wallet type</label>
               <input
-                className=" py-3 px-4 outline-none rounded-md bg-gray-200"
+                className=" py-3 px-4 outline-none rounded-md bg-gray-100"
                 type="text"
               />
             </div>
             <div className="flex flex-col gap-y-2 w-full">
               <label>Key</label>
               <input
-                className=" py-3 px-4 outline-none rounded-md bg-gray-200"
+                className=" py-3 px-4 outline-none rounded-md bg-gray-100"
                 type="text"
                 placeholder="11-203-396"
               />
@@ -63,7 +63,7 @@ const totalItems = cartItems.reduce((a, b)=>{
               <div className="flex flex-col gap-y-2 ">
                 <label>Expiry date</label>
                 <input
-                  className=" py-3 px-4 outline-none w-full rounded-md bg-gray-200"
+                  className=" py-3 px-4 outline-none w-full rounded-md bg-gray-100"
                   type="text"
                   placeholder="MM/YY"
                 />
@@ -71,7 +71,7 @@ const totalItems = cartItems.reduce((a, b)=>{
               <div className="flex flex-col gap-y-2 mb-10">
                 <label>CVV</label>
                 <input
-                  className=" py-3 px-4 outline-none w-full rounded-md bg-gray-200"
+                  className=" py-3 px-4 outline-none w-full rounded-md bg-gray-100"
                   type="password"
                   placeholder="..."
                 />
