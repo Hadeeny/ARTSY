@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import filter from "../assets/filter.svg";
 import { Link } from "react-router-dom";
@@ -9,10 +9,32 @@ const Products = () => {
   const [showPrice, setShowPrice] = useState(false);
   const [priceRange, setPriceRange] = useState(0);
   const [showArtist, setShowArtist] = useState(false);
-  const [minValue, setMinValue] = useState(10);
+  const { products } = useSelector((state) => state.product);
+
+  const progressRef = useRef(null);
+  const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(900);
 
-  const { products } = useSelector((state) => state.product);
+  const handleMin = (e) => {
+    setMinValue(e.target.value);
+    if (e.target.value > maxValue) {
+      setMinValue(maxValue);
+    }
+  };
+
+  const handleMax = (e) => {
+    if (e.target.value > minValue) {
+      setMaxValue(e.target.value);
+    } else setMaxValue(minValue);
+  };
+
+  const max = 900;
+  const step = 10;
+
+  useEffect(() => {
+    progressRef.current.style.left = (minValue / max) * step + "%";
+    progressRef.current.style.right = step - (maxValue / max) * step + "%";
+  }, [minValue, maxValue, max, step]);
 
   return (
     <div className="w-full flex my-10">
@@ -76,15 +98,64 @@ const Products = () => {
             />
           </div>
           <form className={`my-4 space-y-4 ${showPrice ? "block" : "hidden"}`}>
-            <PriceSlider 
-            // minValue={minValue} 
-            // maxValue={maxValue} 
-            // setMinValue={setMinValue} 
-            // setMaxValue={setMaxValue} 
-            min={0} 
-            max={900} 
-            priceCap={900} 
-            step={10} />
+            <div className="w-9/12">
+              <div className="">
+                <div className="flex justify-between my-6 ">
+                  <div className="rounded-md w-32 space-x-2">
+                    <span className="font-semibold"> Min</span>
+                    <input
+                      onChange={(e) => setMinValue(e.target.value)}
+                      type="number"
+                      value={minValue}
+                      className=" w-14 rounded-md border border-gray-400"
+                    />
+                  </div>
+                  {/* <div className="font-semibold text-lg"> - </div> */}
+                  <div className="flex space-x-2">
+                    <span className=" font-semibold">Max</span>
+                    <input
+                      onChange={(e) => setMaxValue(e.target.value)}
+                      type="number"
+                      value={maxValue}
+                      className=" rounded-md w-14 border border-gray-400"
+                    />
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <div className="slider relative h-1 rounded-md bg-black">
+                    <div
+                      className="progress absolute h-1 bg-black rounded "
+                      ref={progressRef}
+                    ></div>
+                  </div>
+
+                  <div className="range-input relative  ">
+                    <input
+                      onChange={handleMin}
+                      type="range"
+                      min={0}
+                      step={step}
+                      max={max}
+                      value={minValue}
+                      className="range-min w-full absolute bg-transparent -top-1 h-1  
+              appearance-none pointer-events-none"
+                    />
+
+                    <input
+                      onChange={handleMax}
+                      type="range"
+                      min={0}
+                      step={step}
+                      max={max}
+                      value={maxValue}
+                      className="range-max absolute -top-1 h-1 w-full bg-transparent  
+              appearance-none pointer-events-none"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
         {/* filter by artist */}
@@ -114,22 +185,26 @@ const Products = () => {
       </div>
       {/* Product display */}
       <div className="w-full md:w-9/12 grid grid-cols-1 md:grid-cols-3 gap-4">
-        {products.map((product, i) => {
-          return (
-            <Link key={i} to={`details/${product.id}`}>
-              <div className="p-2 space-y-4 cursor-pointer rounded-lg shadow-md bg-white">
-                <div className="w-full">
-                  {console.log(product.image)}
-                  <img src={product.image} className="w-full" />
+        {products
+          .filter((prod) => {
+            return prod.price > minValue && prod.price < maxValue;
+          })
+          .map((product, i) => {
+            return (
+              <Link key={i} to={`details/${product.id}`}>
+                <div className="p-2 space-y-4 cursor-pointer rounded-lg shadow-md bg-white">
+                  <div className="w-full">
+                    {console.log(product.image)}
+                    <img src={product.image} className="w-full" />
+                  </div>
+                  <div className="flex flex-row md:flex-col gap-y-3 pb-4 justify-between">
+                    <h3>{product.title}</h3>
+                    <h3>{product.price}</h3>
+                  </div>
                 </div>
-                <div className="flex flex-row md:flex-col gap-y-3 pb-4 justify-between">
-                  <h3>{product.title}</h3>
-                  <h3>{product.price}</h3>
-                </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
       </div>
     </div>
   );

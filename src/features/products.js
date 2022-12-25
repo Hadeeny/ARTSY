@@ -37,13 +37,13 @@ export const products = [
     id: 5,
     image: product5,
     title: "The law makers",
-    price: 120,
+    price: 620,
   },
   {
     id: 6,
     image: product6,
     title: "Ver",
-    price: 20.5,
+    price: 890.5,
   },
   {
     id: 7,
@@ -55,7 +55,7 @@ export const products = [
     id: 8,
     image: product8,
     title: "Rosemary",
-    price: 115,
+    price: 515,
   },
   {
     id: 9,
