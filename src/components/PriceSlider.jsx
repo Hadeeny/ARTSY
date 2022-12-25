@@ -6,31 +6,16 @@ const PriceSlider = ({ min, max, step, priceCap }) => {
   const [maxValue, setMaxValue] = useState(900);
 
   const handleMin = (e) => {
-    // if (maxValue - minValue >= priceCap && maxValue <= max) {
-    //   if (parseInt(e.target.value) > parseInt(maxValue)) {
-    //   } else {
-    //     setMinValue(parseInt(e.target.value));
-    //   }
-    // } else {
-    //   if (parseInt(e.target.value) < minValue) {
-    //     setMinValue(parseInt(e.target.value));
-    //   }
-    // }
-    setMinValue(e.target.value)
+    setMinValue(e.target.value);
+    if (e.target.value > maxValue) {
+      setMinValue(maxValue);
+    }
   };
 
   const handleMax = (e) => {
-    // if (maxValue - minValue >= priceCap && maxValue <= max) {
-    //   if (parseInt(e.target.value) < parseInt(minValue)) {
-    //   } else {
-    //     setMaxValue(parseInt(e.target.value));
-    //   }
-    // } else {
-    //   if (parseInt(e.target.value) > maxValue) {
-    //     setMaxValue(parseInt(e.target.value));
-    //   }
-    // }
-    setMaxValue(e.target.value)
+    if (e.target.value > minValue) {
+      setMaxValue(e.target.value);
+    } else setMaxValue(minValue);
   };
 
   useEffect(() => {
@@ -39,10 +24,10 @@ const PriceSlider = ({ min, max, step, priceCap }) => {
   }, [minValue, maxValue, max, step]);
 
   return (
-    <div className="w-11/12 ">
+    <div className="w-9/12">
       <div className="">
-        <div className="flex items-center my-6 ">
-          <div className="rounded-md w-32">
+        <div className="flex justify-between my-6 ">
+          <div className="rounded-md w-32 space-x-2">
             <span className="font-semibold"> Min</span>
             <input
               onChange={(e) => setMinValue(e.target.value)}
@@ -51,9 +36,9 @@ const PriceSlider = ({ min, max, step, priceCap }) => {
               className=" w-14 rounded-md border border-gray-400"
             />
           </div>
-          <div className="ml-2 font-semibold text-lg"> - </div>
-          <div className=" ">
-            <span className=" font-semibold"> Max</span>
+          {/* <div className="font-semibold text-lg"> - </div> */}
+          <div className="flex space-x-2">
+            <span className=" font-semibold">Max</span>
             <input
               onChange={(e) => setMaxValue(e.target.value)}
               type="number"
@@ -64,9 +49,9 @@ const PriceSlider = ({ min, max, step, priceCap }) => {
         </div>
 
         <div className="mb-4">
-          <div className="slider relative h-1 rounded-md bg-gray-300">
+          <div className="slider relative h-1 rounded-md bg-black">
             <div
-              className="progress absolute h-1 bg-green-300 rounded "
+              className="progress absolute h-1 bg-black rounded "
               ref={progressRef}
             ></div>
           </div>
@@ -79,7 +64,8 @@ const PriceSlider = ({ min, max, step, priceCap }) => {
               step={step}
               max={max}
               value={minValue}
-              className="range-min absolute   -top-1  h-1   bg-transparent  appearance-none pointer-events-none"
+              className="range-min w-full absolute bg-transparent -top-1 h-1  
+              appearance-none pointer-events-none"
             />
 
             <input
@@ -89,7 +75,8 @@ const PriceSlider = ({ min, max, step, priceCap }) => {
               step={step}
               max={max}
               value={maxValue}
-              className="range-max absolute   -top-1 h-1  bg-transparent appearance-none  pointer-events-none"
+              className="range-max absolute -top-1 h-1 w-full bg-transparent  
+              appearance-none pointer-events-none"
             />
           </div>
         </div>
