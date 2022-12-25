@@ -34,7 +34,7 @@ const Loginpage = () => {
   };
   return (
     <div>
-      <form className="w-1/3 mx-auto px-4 space-y-6">
+      <form className="md:w-1/3 w-11/12 mx-auto px-4 space-y-6">
         <h2 className="uppercase text-3xl text-black/60 font-semibold">
           Sign in
         </h2>

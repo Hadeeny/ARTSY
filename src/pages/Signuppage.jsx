@@ -40,7 +40,7 @@ const Signuppage = () => {
   };
   return (
     <div>
-      <form className="w-1/3 mx-auto px-4 space-y-6">
+      <form className="md:w-1/3 w-11/12 mx-auto px-4 space-y-6">
         <h2 className="uppercase text-3xl text-black/60 font-semibold">
           Sign up
         </h2>
@@ -90,7 +90,9 @@ const Signuppage = () => {
         >
           Signup
         </button>
-        <button onClick={signoutHandler}>Signout</button>
+        <button className="ml-6 text-md text-black/50" onClick={signoutHandler}>
+          Signout
+        </button>
       </form>
     </div>
   );
