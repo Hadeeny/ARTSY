@@ -18,12 +18,20 @@ import "../index.css";
 import { Pagination } from "swiper";
 import Livebid from "../pages/Livebid";
 
-const AuctionCarousel = () => {
+const AuctionCarousel = ({
+  data,
+  bid1,
+  bid2,
+  bid3,
+  bid1ref,
+  bid2ref,
+  bid3ref,
+}) => {
   const [selectedId, setSelectedId] = useState(null);
   const auction = [
-    { image: womansunset, id: 1 },
-    { image: lamp, id: 2 },
-    { image: cloths, id: 3 },
+    { image: womansunset, id: 1, bid: bid1, ref: bid1ref },
+    { image: lamp, id: 2, bid: bid2, ref: bid2ref },
+    { image: cloths, id: 3, bid: bid3, ref: bid3ref },
   ];
 
   const closeBid = () => {
@@ -31,6 +39,7 @@ const AuctionCarousel = () => {
   };
   return (
     <>
+      {/* Carousel for mobile */}
       <div className="w-11/12 mx-auto md:hidden">
         <Swiper
           slidesPerView={2}
@@ -76,7 +85,18 @@ const AuctionCarousel = () => {
           </SwiperSlide>
         </Swiper>
       </div>
+      {/* Carousel for desktop */}
       <div className="hidden md:block w-11/12 mx-auto">
+        <AnimatePresence>
+          {selectedId && (
+            <Livebid
+              selectedId={selectedId}
+              auction={auction}
+              handleClose={closeBid}
+              data={data}
+            />
+          )}
+        </AnimatePresence>
         <Swiper
           slidesPerView={3}
           centeredSlides={false}
@@ -113,15 +133,6 @@ const AuctionCarousel = () => {
             );
           })}
         </Swiper>
-        <AnimatePresence>
-          {selectedId && (
-            <Livebid
-              selectedId={selectedId}
-              auction={auction}
-              handleClose={closeBid}
-            />
-          )}
-        </AnimatePresence>
       </div>
     </>
   );

@@ -6,31 +6,35 @@ const db = getFirestore();
 const initialState = {
   products,
   cartItems: [],
-  chat: [],
 };
 
-export const getChats = createAsyncThunk("get_charts", async (_, thunkAPI) => {
-  try {
-    const querySnapshot = await getDocs(collection(db, "users"));
-    querySnapshot.docs.forEach((doc) => {
-      const messages = [];
-      messages.push({ ...doc.data(), id: doc.id });
-    });
-    console.log(messages);
-  } catch (error) {
-    const message =
-      error.respose && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+// export const getChats = createAsyncThunk(
+//   "get_charts",
+//   async (messages, thunkAPI) => {
+//     try {
+//       const querySnapshot = await getDocs(collection(db, "messages"));
+//       querySnapshot.forEach((doc) => {
+//         messages.push({ ...doc.data(), id: doc.id });
+//         return messages;
+//       });
+//     } catch (error) {
+//       const message =
+//         error.respose && error.response.data.message
+//           ? error.response.data.message
+//           : error.message;
 
-    return thunkAPI.rejectWithValue(message);
-  }
-});
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 export const productSlice = createSlice({
   name: "allproducts",
   initialState,
   reducers: {
+    // getData: (state, action) => {
+    //   state.chat = [...action.payload];
+    // },
     increment: (state, action) => {
       state.cartItems.map((prod) => {
         return prod.id === action.payload ? (prod.unit += 1) : "";
@@ -78,29 +82,31 @@ export const productSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(getChats.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getChats.fulfilled, (state, action) => {
-        state.loading = false;
-        state.success = true;
-        // const querySnapshot = action.payload;
-        // querySnapshot.forEach((doc) => {
-        //   console.log(`${doc.id} => ${doc.data()}`);
-        //   // state.chat.push({ ...doc.data(), id: doc.id });
-        // });
-      })
-      .addCase(getChats.rejected, (state, action) => {
-        state.loading = false;
-        state.error = true;
-        state.message = action.payload;
-      });
+    builder;
+    // .addCase(getChats.pending, (state) => {
+    //   state.loading = true;
+    // })
+    // .addCase(getChats.fulfilled, (state, action) => {
+    //   state.loading = false;
+    //   state.success = true;
+    //   state.values = [...action.payload];
+    // })
+    // .addCase(getChats.rejected, (state, action) => {
+    //   state.loading = false;
+    //   state.error = true;
+    //   state.message = action.payload;
+    // });
   },
 });
 
-export const { increment, decrement, addToCart, removeItem, increaseItem } =
-  productSlice.actions;
+export const {
+  increment,
+  getData,
+  decrement,
+  addToCart,
+  removeItem,
+  increaseItem,
+} = productSlice.actions;
 export default productSlice.reducer;
 
 // querySnapshot.forEach((doc) => {
