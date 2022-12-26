@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AuctionCarousel from "../components/AuctionCarousel";
 import auction1 from "../assets/auction1.png";
 import like from "../assets/like.svg";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
@@ -11,9 +11,9 @@ const AuctionPage = () => {
   const bid2CollectionRef = collection(db, "Bid2");
   const bid3CollectionRef = collection(db, "Bid3");
 
-  const query1 = bid1CollectionRef;
-  const query2 = bid2CollectionRef;
-  const query3 = bid3CollectionRef;
+  const query1 = query(bid1CollectionRef, orderBy("createdAt"), limit(25));
+  const query2 = query(bid2CollectionRef, orderBy("createdAt"), limit(25));
+  const query3 = query(bid3CollectionRef, orderBy("createdAt"), limit(25));
 
   const [bid1] = useCollectionData(query1, { idField: "id" });
   const [bid2] = useCollectionData(query2, { idField: "id" });

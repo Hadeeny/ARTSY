@@ -1,5 +1,6 @@
-import {useEffect, useState, useRef} from 'react'
-import woman from "../assets/sunset2.png";
+import {useState, useRef} from 'react'
+import redlike from '../assets/redlike.svg'
+import send from "../assets/sendbutton.svg";
 import Users from "../components/Users";
 import {motion} from 'framer-motion'
 import {addDoc} from 'firebase/firestore'
@@ -57,8 +58,12 @@ const Livebid = ({selectedId, auction, handleClose, data}) => {
               placeholder="place a bid..."
               className="rounded-full relative px-6 w-10/12 py-2 outline-none border border-black"
             />
-            <button onClick={sendBid} className='absolute right-[7rem]'>Send</button>
-            <div className="w-12 h-12 border-black border rounded-full" />
+            <button onClick={sendBid} className='absolute right-[7rem] top-2'>
+              <img src={send} />
+            </button>
+            <div className="w-12 h-12 flex items-center justify-center border-black border rounded-full">
+              <img src={redlike}/>
+            </div>
           </div>
         </div>
       </motion.div>
