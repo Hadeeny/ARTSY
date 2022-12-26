@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { signoutUser } from "../features/productSlice";
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signOut,
 } from "firebase/auth";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { useDispatch } from "react-redux";
 import { app } from "../firebase";
 
 const Signuppage = () => {
+  const dispatch = useDispatch();
   const auth = getAuth(app);
   const [email, setEmail] = useState("");
   const [fullname, setFullname] = useState("");
@@ -37,6 +39,7 @@ const Signuppage = () => {
       .catch((err) => {
         console.log(err.message);
       });
+    dispatch(signoutUser());
   };
   return (
     <div>

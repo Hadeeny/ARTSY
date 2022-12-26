@@ -1,37 +1,23 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { currentUser } from "../features/productSlice";
 import { app } from "../firebase";
-const db = getFirestore();
-
-const collRef = collection(db, "Products");
-
-getDocs(collRef).then((snapshot) => {
-  let products = [];
-  snapshot.docs.forEach((doc) => {
-    products.push({ ...doc.data(), id: doc.id });
-  });
-});
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useDispatch, useSelector } from "react-redux";
 const Loginpage = () => {
   const auth = getAuth(app);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
   const signinHandler = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("user signed in", user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    signInWithEmailAndPassword(auth, email, password);
   };
+  const [user, loading, error] = useAuthState(auth);
+  dispatch(currentUser(user));
   return (
     <div>
       <form className="md:w-1/3 w-11/12 mx-auto px-4 space-y-6">
@@ -44,11 +30,16 @@ const Loginpage = () => {
             <span className="text-blue-600 ">Sign up</span>
           </Link>
         </div>
+        <div>
+          {user && <h3 className="text-blue-500">Signed in as {user.email}</h3>}
+          {error && <h3 className="text-red-500">{error}</h3>}
+          {loading && <h3>Loading...</h3>}
+        </div>
         <div className="flex flex-col gap-y-2 w-full  md:w-11/12">
           <label>Your Email</label>
           <input
             className=" py-3 px-4 outline-none rounded-md bg-gray-200"
-            type="text"
+            type="email"
             onChange={(e) => {
               setEmail(e.target.value);
             }}

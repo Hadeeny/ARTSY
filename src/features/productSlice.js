@@ -74,11 +74,11 @@ export const productSlice = createSlice({
       });
     },
 
-    increaseItem: (state, action) => {
-      // state.cartItems = state.cartItems.filter((item) => {
-      //   return item.id !== action.payload;
-      // });
-      console.log(action.payload);
+    currentUser: (state, action) => {
+      state.user = action.payload;
+    },
+    signoutUser: (state) => {
+      state.user = null;
     },
   },
   extraReducers: (builder) => {
@@ -105,7 +105,8 @@ export const {
   decrement,
   addToCart,
   removeItem,
-  increaseItem,
+  currentUser,
+  signoutUser,
 } = productSlice.actions;
 export default productSlice.reducer;
 

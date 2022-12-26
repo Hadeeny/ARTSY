@@ -4,14 +4,16 @@ import send from "../assets/sendbutton.svg";
 import Users from "../components/Users";
 import {motion} from 'framer-motion'
 import {addDoc} from 'firebase/firestore'
+import {useSelector} from 'react-redux'
 
 const Livebid = ({selectedId, auction, handleClose, data}) => {
+  const {user} = useSelector(state => state.product)
   const [bids, setBids] = useState('')
   const som = auction.filter(auc => auc.id == selectedId)
 
   const info = som[0]
   const sendBid = async ()=>{
-    await addDoc(info.ref, {text:bids, createdAt:Date.now()})
+    await addDoc(info.ref, {text:bids, createdAt:Date.now(), username:user.email})
     textFocus.current.scrollIntoView({behavior: 'smooth'})
   }
 
