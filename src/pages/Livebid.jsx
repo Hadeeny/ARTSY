@@ -85,7 +85,13 @@ const Livebid = ({ selectedId, auction, handleClose, data }) => {
         </motion.div>
       </motion.section>
       {/* Mobile */}
-      <section className="w-full md:hidden block z-[400] h-screen fixed top-0 bottom-0 left-0">
+      <motion.section
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 1, scale: 0 }}
+        transition={{ duration: 0.4 }}
+        className="w-full md:hidden block z-[400] h-screen fixed top-0 bottom-0 left-0"
+      >
         <div className="relative w-screen h-full">
           <img src={info.image2} className="h-screen" />
         </div>
@@ -136,7 +142,7 @@ const Livebid = ({ selectedId, auction, handleClose, data }) => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 };
