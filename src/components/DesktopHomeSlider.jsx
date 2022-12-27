@@ -97,7 +97,7 @@ export default function App() {
         </SwiperSlide>
       </Swiper>
       {/* mobile carousel */}
-      <section id="slider" className="w-full flex justify-center relative mx-auto my-8 md:hidden">
+      <section id="slider" className="w-10/12 flex justify-center relative mx-auto my-8 md:hidden">
         <div className='absolute top-0 rotate-6'>
           <img src={bouquet}/>
         </div>

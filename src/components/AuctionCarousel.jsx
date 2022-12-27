@@ -53,9 +53,9 @@ const AuctionCarousel = ({
           )}
         </AnimatePresence>
         <Swiper
-          slidesPerView={2}
-          centeredSlides={false}
-          spaceBetween={30}
+          slidesPerView={"auto"}
+          // centeredSlides={false}
+          spaceBetween={10}
           pagination={{
             clickable: true,
           }}
@@ -72,7 +72,7 @@ const AuctionCarousel = ({
                   }}
                   className="relative"
                 >
-                  <div className="">
+                  <div className="w-full">
                     <motion.img src={auc.image} />
                   </div>
                   <div className="absolute bottom-4 left-0 right-0 mx-auto  w-10/12">

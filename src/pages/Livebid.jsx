@@ -5,6 +5,8 @@ import Users from "../components/Users";
 import { motion } from "framer-motion";
 import { addDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
+import eye from "../assets/eye.svg";
+import exit from "../assets/ex.svg";
 
 const Livebid = ({ selectedId, auction, handleClose, data }) => {
   const { user } = useSelector((state) => state.product);
@@ -88,14 +90,22 @@ const Livebid = ({ selectedId, auction, handleClose, data }) => {
           <img src={info.image2} className="h-screen" />
         </div>
         <div className="absolute top-0 w-full">
-          <div className="text-white pt-4 text-lg flex w-[20rem] justify-between mx-auto">
-            <div>
+          <div
+            className="text-white pt-4 text-lg flex w-11/12 
+          justify-between mx-auto"
+          >
+            <div className="w-1/2">
               <h3>Tag lost or Wither</h3>
             </div>
-            <div className="space-x-2">
+            <div className="space-x-4 w-1/2 flex justify-end">
               <button className="bg-blue-400 px-2 rounded-md">Live</button>
-              <button className="bg-gray-400 px-2 rounded-md">Views</button>
-              <button onClick={handleClose}>X</button>
+              <button className="bg-gray-400 px-2 flex items-center rounded-md">
+                <img src={eye} />
+                <span>Views</span>
+              </button>
+              <button onClick={handleClose}>
+                <img src={exit} />
+              </button>
             </div>
           </div>
           <div className="text-center">
@@ -103,16 +113,16 @@ const Livebid = ({ selectedId, auction, handleClose, data }) => {
               Current bid $400
             </h2>
           </div>
-          <div className="fixed bottom-2 w-full px-6">
+          <div className="fixed bottom-4 w-full px-6">
             <Users data={data} bid={info.bid} textFocus={textFocus} />
-            <div className="flex relative justify-between mt-4 w-11/12">
+            <div className="flex mx-auto relative justify-between mt-4 w-full">
               <input
                 onChange={(e) => {
                   setBids(e.target.value);
                 }}
                 type="text"
                 placeholder="place a bid..."
-                className="rounded-full px-6 w-10/12 py-2 outline-none border border-black"
+                className="rounded-full px-6 w-10/12 py-2 outline-none mb-4 border border-black"
               />
               <button
                 onClick={sendBid}

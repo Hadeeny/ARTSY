@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import eth from "../assets/eth.svg";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -19,7 +19,7 @@ import "swiper/css/pagination";
 import "../index.css";
 // import required modules
 import { Navigation } from "swiper";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -67,7 +67,14 @@ const ProductDetails = () => {
           <div>
             <div className="flex px-4 items-center border border-transparent py-4 md:border-b-black justify-between">
               <h2 className="text-3xl font-semibold">{product.title}</h2>
-              <h3 className="text-xl font-semibold">{product.price}</h3>
+              <div className="md:flex items-center hidden space-x-2">
+                <img className="w-[1.2rem]" src={eth} />
+                <span className="text-2xl font-semibold">{product.eth}</span>
+              </div>
+              <div className="flex items-center md:hidden space-x-2">
+                <img className="w-[1.2rem] hidden md:block" src={eth} />
+                <span className="text-2xl font-semibold">${product.price}</span>
+              </div>
             </div>
             <div className="px-4 space-y-4  py-4">
               <div>
@@ -80,14 +87,14 @@ const ProductDetails = () => {
                 <button
                   className="text-3xl font-semibold cursor-pointer"
                   onClick={() => {
-                    if(unit > 1){
-                      setUnit((unit) => unit - 1)
+                    if (unit > 1) {
+                      setUnit((unit) => unit - 1);
                     }
                   }}
                 >
                   -
                 </button>{" "}
-                <span className="px-6">{unit}</span>
+                <span className="px-6 text-2xl">{unit}</span>
                 <button
                   className="text-3xl font-semibold cursor-pointer"
                   onClick={() => setUnit((unit) => unit + 1)}
@@ -204,7 +211,12 @@ const ProductDetails = () => {
                   </div>
                   <div className="flex flex-row gap-y-3 pb-4 justify-between">
                     <h3>{product.title}</h3>
-                    <h3>{product.price}</h3>
+                    <div className="flex items-center">
+                      <img className="w-[1rem]" src={eth} />
+                      <span className="text-md font-semibold">
+                        {product.eth}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -237,7 +249,12 @@ const ProductDetails = () => {
                   </div>
                   <div className="flex flex-row gap-y-3 pb-4 justify-between">
                     <h3>{product.title}</h3>
-                    <h3>{product.price}</h3>
+                    <div className="flex items-center">
+                      <img className="w-[1rem]" src={eth} />
+                      <span className="text-md font-semibold">
+                        {product.eth}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>

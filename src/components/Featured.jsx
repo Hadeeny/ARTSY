@@ -12,7 +12,9 @@ import arrow from "../assets/arrow.svg";
 const Featured = () => {
   return (
     <section className="md:px-14 px-2 mt-[22rem] md:mt-8 relative z-[100]">
-      <h2 className="text-xl px-4 md:text-2xl font-bold py-2 md:py-4">Featured products</h2>
+      <h2 className="text-xl px-4 md:text-2xl font-bold py-2 md:py-4">
+        Featured products
+      </h2>
       {/* first section */}
       <div
         className="flex flex-col border-transparent 
@@ -20,15 +22,18 @@ const Featured = () => {
              justify-center md:py-10 pt-1 pb-4 px-4 relative"
       >
         <div className="w-full md:w-1/2">
-          <img className="relative" src={img1} />
+          {/* <div className="absolute z-[5000] top-0 bg-black h-[17rem]" /> */}
+          <div className="w-full">
+            <img className="" src={img1} />
+          </div>
         </div>
         <div className="w-full md:w-1/2 md:px-8 px-0 flex flex-col md:justify-between">
-        <div className='absolute top-[10%] md:static flex justify-center w-11/12 '>
-         <h3 className=" md:text-black text-white font-bold text-2xl">
-            The boolean Egyptian
-          </h3>
-         </div>
-          <p className="text-left max-w-sm">
+          <div className="absolute top-[10%] md:static flex justify-center md:justify-start w-11/12">
+            <h3 className=" md:text-black text-white font-bold text-2xl">
+              The boolean egyptian
+            </h3>
+          </div>
+          <p className="text-left pt-2 max-w-sm">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Consequuntur dolore reiciendis quibusdam architecto voluptates sed
             obcaecati veritatis ipsam quo incidunt
@@ -41,7 +46,9 @@ const Featured = () => {
               <img className="-ml-4" src={user4} />
               <img className="-ml-4" src={user5} />
             </div>
-            <div className='px-2 w-[10rem]'><h4 className=''>64 major creators</h4></div>
+            <div className="px-2 w-[10rem]">
+              <h4 className="">64 major creators</h4>
+            </div>
             <div
               className="flex md:relative absolute top-[30%] md:left-10 
             md:-top-1 right-10 cursor-pointer"
@@ -66,12 +73,12 @@ const Featured = () => {
           <img className="relative" src={img2} />
         </div>
         <div className="w-full md:w-1/2 md:px-8 px-0 flex flex-col md:justify-between">
-        <div className='absolute top-[10%] md:static flex justify-center w-11/12'>
-         <h3 className=" md:text-black text-white font-bold text-2xl">
-            Are we there yet
-          </h3>
-         </div>
-          <p className="text-left max-w-sm">
+          <div className="absolute top-[10%] md:static flex justify-center md:justify-start w-11/12">
+            <h3 className=" md:text-black text-white font-bold text-2xl">
+              Are we there yet
+            </h3>
+          </div>
+          <p className="text-left pt-2 max-w-sm">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Consequuntur dolore reiciendis quibusdam architecto voluptates sed
             obcaecati veritatis ipsam quo incidunt
@@ -84,7 +91,9 @@ const Featured = () => {
               <img className="-ml-4" src={user4} />
               <img className="-ml-4" src={user5} />
             </div>
-            <div className='px-2 w-[10rem]'><h4 className=''>64 major creators</h4></div>
+            <div className="px-2 w-[10rem]">
+              <h4 className="">64 major creators</h4>
+            </div>
             <div
               className="flex md:relative absolute top-[30%] md:left-10 
             md:-top-1 right-10 cursor-pointer"
@@ -109,12 +118,12 @@ const Featured = () => {
           <img className="relative" src={img3} />
         </div>
         <div className="w-full md:w-1/2 md:px-8 px-0 flex flex-col md:justify-between">
-         <div className='absolute top-[10%] md:static flex justify-center w-11/12'>
-         <h3 className=" md:text-black text-white font-bold text-2xl">
-            Oloibiri 1997
-          </h3>
-         </div>
-          <p className="text-left max-w-sm">
+          <div className="absolute top-[10%] md:static flex justify-center md:justify-start w-11/12">
+            <h3 className=" md:text-black text-white font-bold text-2xl">
+              Oloibiri 1997
+            </h3>
+          </div>
+          <p className="text-left pt-2 max-w-sm">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Consequuntur dolore reiciendis quibusdam architecto voluptates sed
             obcaecati veritatis ipsam quo incidunt
@@ -127,7 +136,9 @@ const Featured = () => {
               <img className="-ml-4" src={user4} />
               <img className="-ml-4" src={user5} />
             </div>
-            <div className='px-2 w-[10rem]'><h4 className=''>64 major creators</h4></div>
+            <div className="px-2 w-[10rem]">
+              <h4 className="">64 major creators</h4>
+            </div>
             <div
               className="flex md:relative absolute top-[30%] md:left-10 
             md:-top-1 right-10 cursor-pointer"
