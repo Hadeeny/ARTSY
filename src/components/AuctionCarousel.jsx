@@ -75,8 +75,8 @@ const AuctionCarousel = ({
                   <div className="">
                     <motion.img src={auc.image} />
                   </div>
-                  <div className="absolute bottom-10  w-full flex justify-center">
-                    <div className="text-xl backdrop-blur-lg rounded-lg px-6 py-2 bg-white">
+                  <div className="absolute bottom-4 left-0 right-0 mx-auto  w-10/12">
+                    <div className="text-md text-center bg-white/30 rounded-md py-2 text-white">
                       6h:10mins:15s
                     </div>
                   </div>
@@ -124,8 +124,8 @@ const AuctionCarousel = ({
                     <motion.img src={auc.image} />
                   </motion.div>
                   {/* </Link> */}
-                  <motion.div className="absolute bottom-10 w-full flex justify-center">
-                    <motion.div className="text-2xl backdrop-blur-lg border border-white rounded-lg px-8 py-4 bg-white">
+                  <motion.div className="absolute bottom-6 w-10/12 left-0 right-0 mx-auto">
+                    <motion.div className="text-2xl bg-gray-400/30 border rounded-lg text-center py-4 text-white">
                       6h:10mins:15s
                     </motion.div>
                   </motion.div>

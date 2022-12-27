@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AuctionCarousel from "../components/AuctionCarousel";
 import auction1 from "../assets/auction1.png";
+import auction2 from "../assets/autionchairs.png";
 import like from "../assets/like.svg";
 import { collection, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase";
@@ -108,7 +109,7 @@ const AuctionPage = () => {
                         />
                       </div>
                       <div>
-                        <img src={auction1} />
+                        <img src={auction2} />
                       </div>
                       <div className="px-0 py-1  flex justify-between">
                         <h4 className="text-xl font-semibold ">
