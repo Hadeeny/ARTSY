@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const Users = ({ bid, textFocus }) => {
   return (
     <>
-      <div className="space-y-8 py-2 h-[24rem] overflow-y-auto">
+      <div className="space-y-8 text-white md:text-black py-2 h-[24rem] overflow-y-auto">
         {bid.map((chat, index) => {
           return (
             <div key={index} className="flex items-center space-x-4">

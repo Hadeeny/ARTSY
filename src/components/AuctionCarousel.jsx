@@ -9,6 +9,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 import womansunset from "../assets/sunsetwoman.png";
+import womanmobile from "../assets/womanMobile.png";
 import lamp from "../assets/lamp.png";
 import cloths from "../assets/cloths.png";
 
@@ -29,9 +30,9 @@ const AuctionCarousel = ({
 }) => {
   const [selectedId, setSelectedId] = useState(null);
   const auction = [
-    { image: womansunset, id: 1, bid: bid1, ref: bid1ref },
-    { image: lamp, id: 2, bid: bid2, ref: bid2ref },
-    { image: cloths, id: 3, bid: bid3, ref: bid3ref },
+    { image: womansunset, image2: womanmobile, id: 1, bid: bid1, ref: bid1ref },
+    { image: lamp, id: 2, image2: womanmobile, bid: bid2, ref: bid2ref },
+    { image: cloths, id: 3, image2: womanmobile, bid: bid3, ref: bid3ref },
   ];
 
   const closeBid = () => {
@@ -41,6 +42,16 @@ const AuctionCarousel = ({
     <>
       {/* Carousel for mobile */}
       <div className="w-11/12 mx-auto md:hidden">
+        <AnimatePresence>
+          {selectedId && (
+            <Livebid
+              selectedId={selectedId}
+              auction={auction}
+              handleClose={closeBid}
+              data={data}
+            />
+          )}
+        </AnimatePresence>
         <Swiper
           slidesPerView={2}
           centeredSlides={false}
@@ -51,38 +62,28 @@ const AuctionCarousel = ({
           modules={[Pagination]}
           className="mt-10 cursor-pointer"
         >
-          <SwiperSlide>
-            <div className="relative">
-              <div className="">
-                <motion.img src={womansunset} />
-              </div>
-              <div className="absolute bottom-10  w-full flex justify-center">
-                <div className="text-xl backdrop-blur-lg rounded-lg px-6 py-2 bg-white">
-                  6h:10mins:15s
+          {auction.map((auc, i) => {
+            return (
+              <SwiperSlide key={i}>
+                <div
+                  layoutId={auc.id}
+                  onClick={() => {
+                    setSelectedId(auc.id);
+                  }}
+                  className="relative"
+                >
+                  <div className="">
+                    <motion.img src={auc.image} />
+                  </div>
+                  <div className="absolute bottom-10  w-full flex justify-center">
+                    <div className="text-xl backdrop-blur-lg rounded-lg px-6 py-2 bg-white">
+                      6h:10mins:15s
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <motion.img src={lamp} />
-              <div className="absolute bottom-10 w-full flex justify-center">
-                <div className="text-xl backdrop-blur-lg border border-white rounded-lg px-6 py-2 bg-white">
-                  6h:40mins:15s
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div>
-              <motion.img src={cloths} />
-              <div className="absolute bottom-10 w-full flex justify-center">
-                <div className="text-xl backdrop-blur-lg border border-white rounded-lg px-6 py-2 bg-white">
-                  6h:40mins:15s
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
       {/* Carousel for desktop */}
