@@ -24,7 +24,9 @@ const Header = () => {
             <div className="bg-black w-8 h-1" />
           </div>
           {/* Logo */}
-          <h2 className="uppercase font-bold text-2xl">artsy.</h2>
+          <Link to={'/'}>
+          <h1 className="uppercase font-bold text-2xl">artsy.</h1>
+          </Link>
           {/* Nav container */}
           <ul className="hidden md:flex space-x-8">
             <li>
@@ -74,7 +76,9 @@ const Header = () => {
       >
         {/* header */}
         <div className="flex justify-between">
-          <h2 className="uppercase font-bold text-2xl">artsy.</h2>
+          <Link to={'/'}>
+          <h1 className="uppercase font-bold text-2xl">artsy.</h1>
+          </Link>
           <div
             className="cursor-pointer"
             onClick={() => {

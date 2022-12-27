@@ -74,7 +74,7 @@ const Livebid = ({ selectedId, auction, handleClose, data }) => {
                 placeholder="place a bid..."
                 className="rounded-full relative px-6 w-10/12 py-2 outline-none border border-black"
               />
-              <button onClick={sendBid} className="absolute right-[7rem] top-2">
+              <button onClick={sendBid} className="absolute right-[6rem] top-2">
                 <img src={send} />
               </button>
               <div className="w-12 h-12 flex items-center justify-center border-black border rounded-full">
@@ -85,8 +85,8 @@ const Livebid = ({ selectedId, auction, handleClose, data }) => {
         </motion.div>
       </motion.section>
       {/* Mobile */}
-      <section className="w-full md:hidden block z-[400] h-full fixed top-0 left-0">
-        <div className="relative w-screen h-screen">
+      <section className="w-full md:hidden block z-[400] h-screen fixed top-0 bottom-0 left-0">
+        <div className="relative w-screen h-full">
           <img src={info.image2} className="h-screen" />
         </div>
         <div className="absolute top-0 w-full">
