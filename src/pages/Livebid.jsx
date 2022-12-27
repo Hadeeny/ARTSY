@@ -95,7 +95,7 @@ const Livebid = ({ selectedId, auction, handleClose, data }) => {
             <div className="space-x-2">
               <button className="bg-blue-400 px-2 rounded-md">Live</button>
               <button className="bg-gray-400 px-2 rounded-md">Views</button>
-              <button>X</button>
+              <button onClick={handleClose}>X</button>
             </div>
           </div>
           <div className="text-center">
