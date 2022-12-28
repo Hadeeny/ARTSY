@@ -57,7 +57,7 @@ const Loginpage = () => {
         </div>
         <button
           onClick={signinHandler}
-          className="bg-blue-500 px-8 py-2 text-md rounded text-white"
+          className="bg-blue-500 active:bg-gray-400 px-8 py-2 text-md rounded text-white"
         >
           Signin
         </button>

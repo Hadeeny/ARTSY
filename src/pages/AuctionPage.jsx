@@ -42,7 +42,7 @@ const AuctionPage = () => {
     <>
       {user != null ? (
         <>
-          <section>
+          <section className="-mt-4">
             <AuctionCarousel
               // data={data}
               bid1ref={bid1CollectionRef}

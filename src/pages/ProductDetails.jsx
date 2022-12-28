@@ -264,8 +264,11 @@ const ProductDetails = () => {
       </Swiper>
       {/* Explore all */}
       <div className="text-center my-10">
-        <button className="px-4 py-2 border border-blue-300 text-gradient-to-r from-blue-500 to-red-500">
-          Expolore all
+        <button
+          className="px-6 text-xl py-2 bg-clip-text  border border-x-blue-500 border-y-red-300 rounded-lg font-semibold 
+        text-transparent bg-gradient-to-r from-blue-500 to-red-500"
+        >
+          Explore all
         </button>
       </div>
     </div>

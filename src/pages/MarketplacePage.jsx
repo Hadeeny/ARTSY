@@ -4,7 +4,7 @@ import SearchFilter from "../components/SearchFilter"
 
 const MarketplacePage = () => {
     return (
-        <div className='md:px-16 px-4 my-4'>
+        <div className='md:px-16 px-4 my-2'>
             <SearchFilter/>
             <Products/>
             <Footer />

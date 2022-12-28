@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 const DropPage = () => {
   return (
     <>
-      <section className="md:px-16 px-4 my-4">
+      <section className="md:px-16 px-4 ">
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-semibold">Upcoming drops</h2>
           <p className="text-md hidden md:block text-gray-400">
@@ -18,7 +18,7 @@ const DropPage = () => {
             {" "}
             You may turn on notifications so that no drops will miss you
           </p>
-          <button className="px-12 py-2 border border-black text-black font-semibold text-md">
+          <button className="px-16 py-3 border rounded-md border-black text-black font-semibold text-xl">
             Notify me
           </button>
         </div>
@@ -29,7 +29,7 @@ const DropPage = () => {
             <div>
               <img src={drop1} className="full" />
             </div>
-            <div className="absolute bottom-4  bg-gray-400/30 border-[1px] border-white w-11/12 md:w-10/12 left-0 right-0 rounded-lg mx-auto p-4 text-white">
+            <div className="absolute bottom-4  bg-white/10 backdrop-blur-sm border-[1px] border-white w-11/12 md:w-10/12 left-0 right-0 rounded-lg mx-auto p-4 text-white">
               <p>Time remaining</p>
               <div className="flex justify-between items-center">
                 <div className="text-xl md:text-3xl">06 hrs:45 min:22 sec</div>
@@ -63,7 +63,7 @@ const DropPage = () => {
             <div>
               <img src={drop2} className="full" />
             </div>
-            <div className="absolute bottom-4  bg-gray-400/30 border-[1px] border-white w-11/12 md:w-10/12 left-0 right-0 rounded-lg mx-auto p-4 text-white">
+            <div className="absolute bottom-4  bg-white/10 backdrop-blur-sm border-[1px] border-white w-11/12 md:w-10/12 left-0 right-0 rounded-lg mx-auto p-4 text-white">
               <p>Time remaining</p>
               <div className="flex justify-between items-center">
                 <div className="text-xl md:text-3xl">06 hrs:45 min:22 sec</div>
@@ -97,7 +97,7 @@ const DropPage = () => {
             <div>
               <img src={drop3} className="full" />
             </div>
-            <div className="absolute bottom-4  bg-gray-400/30 border-[1px] border-white w-11/12 md:w-10/12 left-0 right-0 rounded-lg mx-auto p-4 text-white">
+            <div className="absolute bottom-4  bg-white/10 backdrop-blur-sm border-[1px] border-white w-11/12 md:w-10/12 left-0 right-0 rounded-lg mx-auto p-4 text-white">
               <p>Auction ended</p>
               <div className="flex justify-between items-center">
                 <div className="text-xl md:text-3xl">06 hrs:45 min:22 sec</div>
@@ -131,7 +131,7 @@ const DropPage = () => {
             <div>
               <img src={drop4} className="full" />
             </div>
-            <div className="absolute bottom-4  bg-gray-400/30 border-[1px] border-white w-11/12 md:w-10/12 left-0 right-0 rounded-lg mx-auto p-4 text-white">
+            <div className="absolute bottom-4  bg-white/10 backdrop-blur-sm border-[1px] border-white w-11/12 md:w-10/12 left-0 right-0 rounded-lg mx-auto p-4 text-white">
               <p>Auction ended</p>
               <div className="flex justify-between items-center">
                 <div className="text-xl md:text-3xl">06 hrs:45 min:22 sec</div>
@@ -160,7 +160,9 @@ const DropPage = () => {
           </div>
         </div>
         <div className="text-center">
-          <button className="px-6 py-2 border border-black">See more</button>
+          <button className="px-12 py-3 border rounded-md font-semibold text-xl border-black">
+            See more
+          </button>
         </div>
         <Newsletter />
       </section>
