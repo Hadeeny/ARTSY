@@ -66,7 +66,7 @@ const AuctionCarousel = ({
             return (
               <SwiperSlide key={i}>
                 <div
-                  layoutId={auc.id}
+                  layoutid={auc.id}
                   onClick={() => {
                     setSelectedId(auc.id);
                   }}
@@ -75,9 +75,9 @@ const AuctionCarousel = ({
                   <div className="w-full">
                     <motion.img src={auc.image} />
                   </div>
-                  <div className="absolute bottom-4 left-0 right-0 mx-auto  w-10/12">
-                    <div className="text-md text-center bg-white/30 rounded-md py-2 text-white">
-                      6h:10mins:15s
+                  <div className="absolute bottom-10 left-0 right-0 mx-auto w-10/12">
+                    <div className="text-4xl text-center bg-black/20 rounded-md py-6 text-white">
+                      6h:18mins:15s
                     </div>
                   </div>
                 </div>
@@ -113,7 +113,7 @@ const AuctionCarousel = ({
             return (
               <SwiperSlide key={i}>
                 <motion.div
-                  layoutId={auc.id}
+                  layoutid={auc.id}
                   onClick={() => {
                     setSelectedId(auc.id);
                   }}

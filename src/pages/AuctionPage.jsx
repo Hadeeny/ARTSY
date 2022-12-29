@@ -24,130 +24,106 @@ const AuctionPage = () => {
   const [bid3] = useCollectionData(query3, { idField: "id" });
   // console.log(message);
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const info = await getDocs(dataCollectionRef);
-  //     const bi1 = await getDocs(bid1CollectionRef);
-  //     const bi2 = await getDocs(bid2CollectionRef);
-  //     const bi3 = await getDocs(bid3CollectionRef);
-  //     // setData(info.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     // setBid1(bi1.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     // setBid2(bi2.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     // setBid3(bi3.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //   };
-  //   getData();
-  // }, []);
-
   return (
     <>
-      {user != null ? (
-        <>
-          <section className="-mt-4">
-            <AuctionCarousel
-              // data={data}
-              bid1ref={bid1CollectionRef}
-              bid2ref={bid2CollectionRef}
-              bid3ref={bid3CollectionRef}
-              bid1={bid1}
-              bid2={bid2}
-              bid3={bid3}
-            />
-            <div className="mx-2  md:mx-16 my-10">
-              <div>
-                <h3 className="my-7 text-2xl font-semibold">
-                  Top bids from popular creators
-                </h3>
-                <div className="w-full flex flex-col gap-y-6 justify-between md:flex-row">
-                  <div className="space-y-4">
-                    {/* Image card */}
-                    <div className="border-2 border-gray-300 rounded-md md:px-0 px-4">
-                      <div className="w-full flex justify-end py-1 rounded-full ">
-                        <img
-                          src={like}
-                          className="w-[2rem] border border-black p-1 rounded-full"
-                        />
-                      </div>
-                      <div>
-                        <img src={auction1} />
-                      </div>
-                      <div className="px-0 py-1  flex justify-between">
-                        <h4 className="text-xl font-semibold ">
-                          Out of the box
-                        </h4>
-                        <h4 className="text-xl font-semibold">0.35ETH</h4>
-                      </div>
-                    </div>
-                    <div className="px-4 md:px-0">
-                      <h4>
-                        Creator: <span>Dan Murray</span>
-                      </h4>
-                      <h4>
-                        Date: <span>12/08/12</span>
-                      </h4>
-                      <h4>
-                        Highest bid: <span>0.7ETH</span>
-                      </h4>
-                    </div>
-                    <div className="flex bg-gray-200 p-4 rounded-md justify-between">
-                      <div>
-                        <h4>Current bid</h4>
-                        <h4>0.985ETH</h4>
-                      </div>
-                      <button className="bg-blue-700 px-6 py-1 text-white">
-                        {" "}
-                        Place bid
-                      </button>
-                    </div>
+      <section className="-mt-4">
+        <AuctionCarousel
+          // data={data}
+          bid1ref={bid1CollectionRef}
+          bid2ref={bid2CollectionRef}
+          bid3ref={bid3CollectionRef}
+          bid1={bid1}
+          bid2={bid2}
+          bid3={bid3}
+        />
+        <div className="mx-2  md:mx-16 my-10">
+          <div>
+            <h3 className="my-7 text-2xl font-semibold">
+              Top bids from popular creators
+            </h3>
+            <div className="w-full flex flex-col gap-y-6 justify-between md:flex-row">
+              <div className="space-y-4">
+                {/* Image card */}
+                <div className="border-2 border-gray-300 rounded-md md:px-0 px-4">
+                  <div className="w-full flex justify-end py-1 rounded-full ">
+                    <img
+                      src={like}
+                      className="w-[2rem] border border-black p-1 rounded-full"
+                    />
                   </div>
-                  <div className="space-y-4">
-                    {/* Image card */}
-                    <div className="border-2 border-gray-300 rounded-md md:px-0 px-4">
-                      <div className="w-full flex justify-end py-1 rounded-full ">
-                        <img
-                          src={like}
-                          className="w-[2rem] border border-black p-1 rounded-full"
-                        />
-                      </div>
-                      <div>
-                        <img src={auction2} />
-                      </div>
-                      <div className="px-0 py-1  flex justify-between">
-                        <h4 className="text-xl font-semibold ">
-                          Out of the box
-                        </h4>
-                        <h4 className="text-xl font-semibold">0.35ETH</h4>
-                      </div>
-                    </div>
-                    <div className="px-4 md:px-0">
-                      <h4>
-                        Creator: <span>Dan Murray</span>
-                      </h4>
-                      <h4>
-                        Date: <span>12/08/12</span>
-                      </h4>
-                      <h4>
-                        Highest bid: <span>0.7ETH</span>
-                      </h4>
-                    </div>
-                    <div className="flex bg-gray-200 p-4 rounded-md justify-between">
-                      <div>
-                        <h4>Current bid</h4>
-                        <h4>0.985ETH</h4>
-                      </div>
-                      <button className="bg-blue-700 px-6 py-1 text-white">
-                        {" "}
-                        Place bid
-                      </button>
-                    </div>
+                  <div>
+                    <img src={auction1} />
                   </div>
+                  <div className="px-0 py-1  flex justify-between">
+                    <h4 className="text-xl font-semibold ">Out of the box</h4>
+                    <h4 className="text-xl font-semibold">0.35ETH</h4>
+                  </div>
+                </div>
+                <div className="px-4 md:px-0">
+                  <h4>
+                    Creator: <span>Dan Murray</span>
+                  </h4>
+                  <h4>
+                    Date: <span>12/08/12</span>
+                  </h4>
+                  <h4>
+                    Highest bid: <span>0.7ETH</span>
+                  </h4>
+                </div>
+                <div className="flex bg-gray-200 p-4 rounded-md justify-between">
+                  <div>
+                    <h4>Current bid</h4>
+                    <h4>0.985ETH</h4>
+                  </div>
+                  <button className="bg-blue-700 px-6 py-1 text-white">
+                    {" "}
+                    Place bid
+                  </button>
+                </div>
+              </div>
+              <div className="space-y-4">
+                {/* Image card */}
+                <div className="border-2 border-gray-300 rounded-md md:px-0 px-4">
+                  <div className="w-full flex justify-end py-1 rounded-full ">
+                    <img
+                      src={like}
+                      className="w-[2rem] border border-black p-1 rounded-full"
+                    />
+                  </div>
+                  <div>
+                    <img src={auction2} />
+                  </div>
+                  <div className="px-0 py-1  flex justify-between">
+                    <h4 className="text-xl font-semibold ">Out of the box</h4>
+                    <h4 className="text-xl font-semibold">0.35ETH</h4>
+                  </div>
+                </div>
+                <div className="px-4 md:px-0">
+                  <h4>
+                    Creator: <span>Dan Murray</span>
+                  </h4>
+                  <h4>
+                    Date: <span>12/08/12</span>
+                  </h4>
+                  <h4>
+                    Highest bid: <span>0.7ETH</span>
+                  </h4>
+                </div>
+                <div className="flex bg-gray-200 p-4 rounded-md justify-between">
+                  <div>
+                    <h4>Current bid</h4>
+                    <h4>0.985ETH</h4>
+                  </div>
+                  <button className="bg-blue-700 px-6 py-1 text-white">
+                    {" "}
+                    Place bid
+                  </button>
                 </div>
               </div>
             </div>
-          </section>
-        </>
-      ) : (
-        <Loginpage />
-      )}
+          </div>
+        </div>
+      </section>
     </>
   );
 };

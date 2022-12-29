@@ -92,8 +92,8 @@ const Livebid = ({ selectedId, auction, handleClose, data }) => {
         transition={{ duration: 0.4 }}
         className="w-full md:hidden block z-[400] h-screen fixed top-0 bottom-0 left-0"
       >
-        <div className="relative w-screen h-full">
-          <img src={info.image2} className="h-screen" />
+        <div className="relative w-screen h-screen">
+          <img src={info.image} className="w-screen h-screen object-cover" />
         </div>
         <div className="absolute top-0 w-full">
           <div
