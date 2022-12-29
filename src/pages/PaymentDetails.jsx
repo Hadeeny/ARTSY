@@ -1,8 +1,12 @@
 import CheckoutSteps from "../components/CheckoutSteps";
 import {useSelector} from 'react-redux'
+import {FlutterWaveButton, closePaymentModal} from 'flutterwave-react-v3'
 const PaymentDetails = () => {
 
   const {cartItems} = useSelector(state => state.product)
+  const {userDetails} = useSelector(state => state.user)
+
+  const {email, fullname, totalprice:totalValue, phone, country} = userDetails
 
   // sum all the items in the cart
 const totalItems = cartItems.reduce((a, b)=>{
@@ -22,6 +26,34 @@ const totalItems = cartItems.reduce((a, b)=>{
       return acc + item.price * item.unit;
     }, tax)
   );
+
+  const config = {
+    public_key: 'FLWPUBK_TEST-720742539bdea4937316ace8eec73897-X',
+    tx_ref: Date.now(),
+    amount: totalValue,
+    currency: 'USD',
+    payment_options: 'card,mobilemoney,ussd',
+    customer: {
+      email: email,
+      phone_number: phone,
+      name: fullname,
+    },
+    customizations: {
+      title: 'My store',
+      description: 'Payment for items in cart',
+      logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+    },
+  };
+
+  const fwConfig = {
+    ...config,
+    text: 'Pay with Flutterwave!',
+    callback: (response) => {
+       console.log(response);
+      closePaymentModal() // this will close the modal programmatically
+    },
+    onClose: () => {},
+  };
 
   return (
     <section className="md:px-16 px-4 my-4">
@@ -86,9 +118,10 @@ const totalItems = cartItems.reduce((a, b)=>{
               </p>
             </div>
           </form>
-          <button className="bg-blue-600 text-white text-xl w-full my-12 py-4">
-            Confirm
-          </button>
+          <div className="bg-blue-600 text-center text-white text-xl w-full my-12 py-4">
+            {/* Confirm */}
+          <FlutterWaveButton {...fwConfig} />
+          </div>
         </div>
         <div className="hidden md:block md:w-1/2">
           <div className="flex justify-end mb-8">
@@ -140,3 +173,4 @@ const totalItems = cartItems.reduce((a, b)=>{
 };
 
 export default PaymentDetails;
+// FLWPUBK_TEST-720742539bdea4937316ace8eec73897-X

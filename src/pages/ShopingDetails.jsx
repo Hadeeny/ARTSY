@@ -1,13 +1,19 @@
 import { increment, decrement, removeItem } from "../features/productSlice";
 import product1 from "../assets/product1.png";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "../components/CheckoutSteps";
 import {motion} from 'framer-motion'
+import {useState} from 'react'
+import {userDetails} from '../features/userSlice'
 
 const ShopingDetails = () => {
   const { cartItems, products } = useSelector((state) => state.product);
-
+const [email, setEmail] = useState('')
+const [fullname, setFullname] = useState('')
+const [phone, setPhone] = useState('')
+const [country, setCountry] = useState('')
+const [city, setCity] = useState('')
   const dispatch = useDispatch()
 // sum all the items in the cart
 const totalItems = cartItems.reduce((a, b)=>{
@@ -27,6 +33,14 @@ totalprice = addDecimals(
     return acc + item.price * item.unit;
   }, tax)
 );
+const navigate = useNavigate()
+const handleProceed= (e) => {
+  e.preventDefault()
+  dispatch(userDetails({
+    email, fullname, city, phone, country, totalprice:Number(totalprice)
+  }))
+  navigate('/payment')
+}
 
 
   return (
@@ -34,22 +48,27 @@ totalprice = addDecimals(
       <CheckoutSteps step1 step2 />
       <div className="flex">
         {/* Customer address */}
-        <motion.form initial={{opacity:0, scale: 0.8}} animate={{opacity:1, scale:1}} transition={{duration: 1.3}} 
+        <motion.form onSubmit={handleProceed} initial={{opacity:0, scale: 0.8}} animate={{opacity:1, scale:1}} transition={{duration: 1.3}} 
         className="w-full px-4 space-y-4 md:w-1/2">
           <div className="flex flex-col gap-y-2 w-full  md:w-11/12">
             <label>Your Email</label>
             <input
-              className=" py-3 px-4 outline-none rounded-md bg-gray-100"
-              type="text"
+              className=" py-3 px-4 outline-none rounded-md bg-gray-100 invalid:border invalid:border-red-600"
+              type="email"
+              name='email'
               placeholder="oluwasegunadeniyi064@gmail.com"
+              onChange={(e)=>setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="flex flex-col gap-y-2 w-full md:w-11/12">
             <label>Your fullname</label>
             <input
-              className=" py-3 px-4 outline-none rounded-md bg-gray-100"
+              className=" py-3 px-4 outline-none rounded-md bg-gray-100 invalid:border invalid:border-red-600"
               type="text"
               placeholder="Oluwasegun Adeniyi"
+              onChange={(e)=>setFullname(e.target.value)}
+              required
             />
           </div>
           <div className="flex flex-col gap-y-2 w-full md:w-11/12">
@@ -62,22 +81,26 @@ totalprice = addDecimals(
           <div className="flex flex-col gap-y-2 w-full md:w-11/12">
             <label>City</label>
             <input
-              className=" py-3 px-4 outline-none rounded-md bg-gray-100"
+              className=" py-3 px-4 outline-none rounded-md bg-gray-100 invalid:border invalid:border-red-600"
               type="text"
+              onChange={(e)=>setCity(e.target.value)}
+              required
             />
           </div>
           <div className="flex flex-col gap-y-4 md:flex-row justify-between w-full md:w-11/12">
             <div className="flex flex-col gap-y-2 ">
               <label>Country</label>
               <input
-                className=" py-3 px-4 outline-none w-full rounded-md bg-gray-100"
+                className=" py-3 px-4 outline-none w-full rounded-md bg-gray-100 invalid:border invalid:border-red-600"
                 type="text"
+                onChange={(e)=>setCountry(e.target.value)}
+                required
               />
             </div>
             <div className="flex flex-col gap-y-2 ">
               <label>postal code</label>
               <input
-                className=" py-3 px-4 outline-none w-full rounded-md bg-gray-100"
+                className=" py-3 px-4 outline-none w-full rounded-md bg-gray-100 invalid:border invalid:border-red-600"
                 type="text"
                 placeholder="001001"
               />
@@ -86,17 +109,19 @@ totalprice = addDecimals(
           <div className="flex flex-col gap-y-2 w-full md:w-11/12">
             <label>Phone number</label>
             <input
-              className=" py-3 px-4 mb-10 outline-none rounded-md bg-gray-100"
-              type="text"
+              className=" py-3 px-4 mb-10 outline-none rounded-md bg-gray-100 invalid:border invalid:border-red-600"
+              type="number"
               placeholder="11-203-396"
+              onChange={(e)=>setPhone(e.target.value)}
+              required
             />
           </div>
 
-          <Link to={"/payment"}>
-            <button className="py-4 w-full md:w-11/12 bg-blue-600 text-white">
+          {/* <Link to={"/payment"}> */}
+            <button type='submit' className="py-4 w-full md:w-11/12 bg-blue-600 text-white">
               Proceed to payment
             </button>
-          </Link>
+          {/* </Link> */}
         </motion.form>
         {/* cart items */}
         <motion.div animate={{opacity:1, x:0}} className="hidden md:flex w-1/2 flex-col divide-y-2 border-black">
