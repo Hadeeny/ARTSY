@@ -7,7 +7,7 @@ const SearchFilter = () => {
         <div className='w-full flex items-center'>
             <div className='hidden md:block w-3/12 relative'>
                 <img width='20rem' className='absolute top-[0.7rem] left-2' src={search}/> 
-                <input type='text' className='bg-gray-100 py-2 pl-10 outline-none rounded-md' placeholder='Search'/>
+                <input type='text' className='bg-gray-100 w-10/12 py-2 pl-10 outline-none rounded-md' placeholder='Search'/>
             </div>
             <div className='w-full md:w-9/12  p-4 shadow-lg 
             flex items-center justify-between' >

@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 export const signinUser = createAsyncThunk(
   "userSignin",
@@ -19,10 +22,30 @@ export const signinUser = createAsyncThunk(
   }
 );
 
+export const registerUser = createAsyncThunk(
+  "userRegister",
+  async (credentials, thunkAPI) => {
+    console.log(credentials);
+    try {
+      const { auth, email, password } = credentials;
+      await createUserWithEmailAndPassword(auth, email, password);
+      // return credentials;
+    } catch (error) {
+      const message =
+        error.respose && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 const initialState = {
   userDetails: null,
   errorMessage: "",
   loading: false,
+  customer: "",
 };
 
 export const userSlice = createSlice({
@@ -34,6 +57,10 @@ export const userSlice = createSlice({
     },
     resetMessage: (state) => {
       state.errorMessage = "";
+    },
+
+    customerDetails: (state, action) => {
+      state.customer = action.payload;
     },
 
     currentUser: (state, action) => {
@@ -56,10 +83,26 @@ export const userSlice = createSlice({
       .addCase(signinUser.rejected, (state, action) => {
         state.loading = false;
         state.errorMessage = action.payload;
+      })
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.signedUser = action.payload;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.errorMessage = action.payload;
       });
   },
 });
 
-export const { userDetails, resetMessage, currentUser, signoutUser } =
-  userSlice.actions;
+export const {
+  userDetails,
+  resetMessage,
+  currentUser,
+  signoutUser,
+  customerDetails,
+} = userSlice.actions;
 export default userSlice.reducer;

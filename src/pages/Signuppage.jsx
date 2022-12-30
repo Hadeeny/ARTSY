@@ -1,34 +1,41 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signoutUser } from "../features/productSlice";
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signOut,
 } from "firebase/auth";
-import { useDispatch } from "react-redux";
+// import {useNavigate} from 'react-router-dom'
+import {registerUser, resetMessage} from '../features/userSlice'
+import { useDispatch, useSelector } from "react-redux";
 import { app } from "../firebase";
+import ClipLoader from "react-spinners/ClipLoader";
+import { useAuthState } from "react-firebase-hooks/auth";
+import {useNavigate} from 'react-router-dom'
 
 const Signuppage = () => {
+  const { loading: lodin, errorMessage } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const auth = getAuth(app);
   const [email, setEmail] = useState("");
   const [fullname, setFullname] = useState("");
   const [password, setPassword] = useState("");
   const signupHandler = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("userCreated", user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    dispatch(registerUser({auth, email, password}))
   };
+
+  const [user, loading, error] = useAuthState(auth);
+  useEffect(() => {
+    if (user !== null) {
+      // window.history.back();
+      return navigate('/cart')
+    }
+  }, [user]);
+
 
   const signoutHandler = (e) => {
     e.preventDefault();
@@ -41,6 +48,8 @@ const Signuppage = () => {
       });
     dispatch(signoutUser());
   };
+
+
   return (
     <div>
       <form className="md:w-1/3 w-11/12 mx-auto px-4 space-y-6">
@@ -61,6 +70,9 @@ const Signuppage = () => {
             onChange={(e) => {
               setFullname(e.target.value);
             }}
+            onFocus={()=>{
+              dispatch(resetMessage())
+            }}
             placeholder="Oluwasegun Adeniyi"
           />
         </div>
@@ -72,6 +84,9 @@ const Signuppage = () => {
             type="text"
             onChange={(e) => {
               setEmail(e.target.value);
+            }}
+            onFocus={()=>{
+              dispatch(resetMessage())
             }}
             placeholder="oluwasegunadeniyi064@gmail.com"
           />
@@ -85,13 +100,17 @@ const Signuppage = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            onFocus={()=>{
+              dispatch(resetMessage())
+            }}
           />
         </div>
+        <h3 className='text-red-500'>{errorMessage}</h3>
         <button
           onClick={signupHandler}
           className="bg-blue-500 px-8 py-2 text-md rounded text-white"
         >
-          Signup
+          {lodin ? <ClipLoader size={20} /> : "Register"}
         </button>
         <button className="ml-6 text-md text-black/50" onClick={signoutHandler}>
           Signout

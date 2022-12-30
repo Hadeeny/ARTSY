@@ -1,4 +1,4 @@
-import {useEffect} from 'react'
+import { useEffect } from "react";
 import woman from "../assets/woman.png";
 import smallman from "../assets/smallman.png";
 import bigman from "../assets/bigman.png";
@@ -17,34 +17,14 @@ import "../index.css";
 import { EffectFade, Autoplay } from "swiper";
 
 const TopCreators = () => {
-
-  let i = 0
-  const images = []
-  images[0]= woman
-  images[1]= bigman
-  images[2]= smallman
- 
-  const switchImage = ()=>{
-    
-  }
-  
-  // useEffect(() => {
-  //   setInterval(()=>{
-  //     if (i<images.length - 1){
-  //       console.log(i+=1)
-  //       return i+=1
-  //     } else {
-  //       console.log(i)
-  //      return i = 0
-  //     } 
-       
-  //   }, 3000)
-  //   // return ()=> clearTimeout(timeout)  
-  // },[])
-  
+  const images = [{ image: woman }, { image: bigman }, { image: smallman }];
+  const switchImage = () => {};
 
   return (
-    <section className="w-full bg-[#E2E2E2] h-[27rem] md:h-[40rem] my-10 px-2 md:px-28 py-10 relative">
+    <section
+      className="w-full bg-[#E2E2E2] h-[27rem] 
+    md:h-[40rem] my-10 px-2 md:px-28 py-10 relative"
+    >
       {/* typography */}
       <div className="flex flex-col w-full gap-y-10 md:gap-y-24">
         <h2 className="text-4xl md:text-6xl font-bold max-w-md">
@@ -60,10 +40,41 @@ const TopCreators = () => {
       </div>
       {/* gray rectangle */}
       {/* <div className="md:w-[50%] w-[73%] md:h-[35rem] h-[30rem]  z-[0] absolute bg-[#D9D9D9] right-[12%] md:right-[10%] -bottom-10"></div> */}
-      <div className="absolute right-4 z-[1000] md:right-[10%] -bottom-10">
-        <img className="bg-contain w-[23rem] md:w-[35rem]" src={images[i]} />
-      </div>
-      
+      <Swiper
+        autoplay={{ delay: 3000 }}
+        slidesPerView={1}
+        spaceBetween={30}
+        loop={true}
+        modules={[Autoplay]}
+        className="absolute w-[15rem] h-[15rem] md:w-[32rem] md:h-[32rem] 
+      right-0 z-[1000] md:-right-14 bottom-10 md:bottom-[15rem]  "
+      >
+        <SwiperSlide>
+          <div className=" ">
+            <img
+              className="bg-contain w-full h-full object-cover"
+              src={woman}
+            />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className=" ">
+            <img
+              className="bg-contain w-full h-full object-cover"
+              src={bigman}
+            />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className=" ">
+            <img
+              className="bg-contain w-full h-full object-cover"
+              src={smallman}
+            />
+          </div>
+        </SwiperSlide>
+      </Swiper>
+
       {/* list items */}
       <ul className="hidden md:block absolute z-[400]  top-[5rem] right-[8rem] space-y-8">
         <li className="border-4 px-8 border-transparent cursor-pointer active:border-l-black">

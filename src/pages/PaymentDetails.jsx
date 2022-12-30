@@ -1,10 +1,15 @@
 import CheckoutSteps from "../components/CheckoutSteps";
-import {useSelector} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import {emptyCart} from '../features/productSlice'
+import {customerDetails} from '../features/userSlice'
+import {useNavigate, useLocation} from 'react-router-dom'
 import {FlutterWaveButton, closePaymentModal} from 'flutterwave-react-v3'
 const PaymentDetails = () => {
 
+  const dispatch = useDispatch()
+
   const navigate = useNavigate()
+
 
   const {cartItems} = useSelector(state => state.product)
   const {userDetails} = useSelector(state => state.user)
@@ -53,6 +58,8 @@ const totalItems = cartItems.reduce((a, b)=>{
     text: 'Pay with Flutterwave!',
     callback: (response) => {
        if(response.status == 'successful'){
+         dispatch(customerDetails(response.customer))
+         dispatch(emptyCart())
          return navigate('/thankyou')
        }
       // console.log(response.status)

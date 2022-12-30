@@ -10,7 +10,7 @@ const Header = () => {
   const {cartItems} = useSelector(state => state.product)
   return (
     <>
-      <header className="w-full py-8 px-4 md:px-24">
+      <header className="w-full z-[500] relative py-8 px-4 md:px-24">
         <div className="flex items-center justify-between">
           {/* hamburger img */}
           <div

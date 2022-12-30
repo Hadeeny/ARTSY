@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { increment, decrement, addToCart } from "../features/productSlice";
 import egyptian from "../assets/product2.png";
 import angle from "../assets/angle.svg";
@@ -8,7 +8,7 @@ import like1 from "../assets/like1.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import eth from "../assets/eth.svg";
 // Import Swiper styles
 import "swiper/css";
@@ -23,6 +23,10 @@ import { motion } from "framer-motion";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
+  const {pathname} = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   let { id } = useParams();
 
   const [showDetails, setShowDetails] = useState(false);

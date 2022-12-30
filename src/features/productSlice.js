@@ -73,6 +73,9 @@ export const productSlice = createSlice({
         return item.id !== action.payload;
       });
     },
+    emptyCart: (state) => {
+      state.cartItems = [];
+    },
 
     currentUser: (state, action) => {
       state.user = action.payload;
@@ -105,6 +108,7 @@ export const {
   decrement,
   addToCart,
   removeItem,
+  emptyCart,
   currentUser,
   signoutUser,
 } = productSlice.actions;

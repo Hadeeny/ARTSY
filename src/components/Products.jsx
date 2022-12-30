@@ -69,15 +69,15 @@ const Products = () => {
             </div>
             <div className="flex space-x-4 items-center">
               <input type="checkbox" className="bg-gray-400" />
-              <label>Editorials</label>
+              <label>Fashion</label>
             </div>
             <div className="flex space-x-4 items-center">
               <input type="checkbox" className="bg-gray-400" />
-              <label>Editorials</label>
+              <label>Optics</label>
             </div>
             <div className="flex space-x-4 items-center">
               <input type="checkbox" className="bg-gray-400" />
-              <label>Editorials</label>
+              <label>Art & Museum</label>
             </div>
           </form>
         </div>
