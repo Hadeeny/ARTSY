@@ -90,7 +90,7 @@ const Livebid = ({ selectedId, auction, handleClose, data }) => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 1, scale: 0 }}
         transition={{ duration: 0.4 }}
-        className="w-full md:hidden block z-[400] bg-black/40 bg-blend-darken fixed top-0 bottom-0 left-0"
+        className="w-full md:hidden block z-[700] bg-black/40 bg-blend-darken fixed top-0 bottom-0 left-0"
       >
         <div className="absolute top-0 backdrop-blur-xl w-full h-full">
           <img src={info.image} className="w-full h-screen object-cover" />
