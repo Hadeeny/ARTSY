@@ -1,18 +1,39 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+export const signinUser = createAsyncThunk(
+  "userSignin",
+  async (credentials, thunkAPI) => {
+    try {
+      const { auth, email, password } = credentials;
+      await signInWithEmailAndPassword(auth, email, password);
+      // return credentials;
+    } catch (error) {
+      const message =
+        error.respose && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 const initialState = {
   userDetails: null,
+  errorMessage: "",
+  loading: false,
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    // getData: (state, action) => {
-    //   state.chat = [...action.payload];
-    // },
     userDetails: (state, action) => {
       state.userDetails = action.payload;
+    },
+    resetMessage: (state) => {
+      state.errorMessage = "";
     },
 
     currentUser: (state, action) => {
@@ -24,22 +45,21 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder;
-    // .addCase(getChats.pending, (state) => {
-    //   state.loading = true;
-    // })
-    // .addCase(getChats.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.success = true;
-    //   state.values = [...action.payload];
-    // })
-    // .addCase(getChats.rejected, (state, action) => {
-    //   state.loading = false;
-    //   state.error = true;
-    //   state.message = action.payload;
-    // });
+    builder
+      .addCase(signinUser.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(signinUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.signedUser = action.payload;
+      })
+      .addCase(signinUser.rejected, (state, action) => {
+        state.loading = false;
+        state.errorMessage = action.payload;
+      });
   },
 });
 
-export const { userDetails, currentUser, signoutUser } = userSlice.actions;
+export const { userDetails, resetMessage, currentUser, signoutUser } =
+  userSlice.actions;
 export default userSlice.reducer;

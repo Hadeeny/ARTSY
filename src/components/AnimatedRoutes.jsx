@@ -16,6 +16,7 @@ import Livebid from "../pages/Livebid";
 import { AnimatePresence } from "framer-motion";
 import Loginpage from "../pages/Loginpage";
 import Signuppage from "../pages/Signuppage";
+import ThankyouPage from "../pages/ThankyouPage";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -33,6 +34,7 @@ const AnimatedRoutes = () => {
         <Route path="/livebids" element={<Livebid />} />
         <Route path="/login" element={<Loginpage />} />
         <Route path="/signup" element={<Signuppage />} />
+        <Route path="/thankyou" element={<ThankyouPage />} />
       </Routes>
     </AnimatePresence>
   );

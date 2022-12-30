@@ -1,7 +1,10 @@
 import CheckoutSteps from "../components/CheckoutSteps";
 import {useSelector} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 import {FlutterWaveButton, closePaymentModal} from 'flutterwave-react-v3'
 const PaymentDetails = () => {
+
+  const navigate = useNavigate()
 
   const {cartItems} = useSelector(state => state.product)
   const {userDetails} = useSelector(state => state.user)
@@ -49,7 +52,10 @@ const totalItems = cartItems.reduce((a, b)=>{
     ...config,
     text: 'Pay with Flutterwave!',
     callback: (response) => {
-       console.log(response);
+       if(response.status == 'successful'){
+         return navigate('/thankyou')
+       }
+      // console.log(response.status)
       closePaymentModal() // this will close the modal programmatically
     },
     onClose: () => {},
