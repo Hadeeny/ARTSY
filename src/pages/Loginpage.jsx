@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { currentUser } from "../features/productSlice";
 import { app } from "../firebase";
@@ -9,14 +9,26 @@ const Loginpage = () => {
   const auth = getAuth(app);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState('')
 
   const dispatch = useDispatch();
 
-  const signinHandler = (e) => {
+  const signinHandler = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password);
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      console.log(result,null)
+    } catch (error) {
+      console.log(error.message)
+      setErrorMessage(error.message)
+    }
   };
   const [user, loading, error] = useAuthState(auth);
+  useEffect(() => {
+    if(user !== null){
+      window.history.back()
+    }
+  }, [user])
   dispatch(currentUser(user));
   return (
     <div>
@@ -42,6 +54,7 @@ const Loginpage = () => {
             type="email"
             onChange={(e) => {
               setEmail(e.target.value);
+              setErrorMessage('')
             }}
             placeholder="oluwasegunadeniyi064@gmail.com"
           />
@@ -52,9 +65,14 @@ const Loginpage = () => {
           <input
             className=" py-3 px-4 outline-none rounded-md bg-gray-200"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => 
+              {setPassword(e.target.value)
+            setErrorMessage('')}
+            }
+            
           />
         </div>
+        <p className='text-red-600'>{errorMessage}</p>
         <button
           onClick={signinHandler}
           className="bg-blue-500 active:bg-gray-400 px-8 py-2 text-md rounded text-white"

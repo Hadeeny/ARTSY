@@ -6,6 +6,7 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import {motion} from 'framer-motion'
 import {useState} from 'react'
 import {userDetails} from '../features/userSlice'
+import {Link} from 'react-router-dom'
 
 const ShopingDetails = () => {
   const { cartItems, products } = useSelector((state) => state.product);
@@ -42,9 +43,12 @@ const handleProceed= (e) => {
   navigate('/payment')
 }
 
-
+const { user } = useSelector((state) => state.product);
+  
   return (
-    <section className="mx-2 md:mx-16 my-10">
+    <>
+    {user !=null?<>
+      <section className="mx-2 md:mx-16 my-10">
       <CheckoutSteps step1 step2 />
       <div className="flex">
         {/* Customer address */}
@@ -178,6 +182,14 @@ const handleProceed= (e) => {
         </motion.div>
       </div>
     </section>
+    </>:<h3 className="text-center">
+          You have to{" "}
+          <Link to={"/login"}>
+            <span className="text-blue-500">login</span>
+          </Link>{" "}
+          first
+        </h3>}
+    </>
   );
 };
 

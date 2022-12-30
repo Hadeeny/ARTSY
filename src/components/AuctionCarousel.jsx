@@ -30,9 +30,9 @@ const AuctionCarousel = ({
 }) => {
   const [selectedId, setSelectedId] = useState(null);
   const auction = [
-    { image: womansunset, image2: womanmobile, id: 1, bid: bid1, ref: bid1ref },
-    { image: lamp, id: 2, image2: womanmobile, bid: bid2, ref: bid2ref },
-    { image: cloths, id: 3, image2: womanmobile, bid: bid3, ref: bid3ref },
+    { image: womansunset, id: 1, bid: bid1, ref: bid1ref },
+    { image: lamp, id: 2, bid: bid2, ref: bid2ref },
+    { image: cloths, id: 3, bid: bid3, ref: bid3ref },
   ];
 
   const closeBid = () => {
@@ -53,7 +53,7 @@ const AuctionCarousel = ({
           )}
         </AnimatePresence>
         <Swiper
-          slidesPerView={"auto"}
+          slidesPerView={2}
           // centeredSlides={false}
           spaceBetween={10}
           pagination={{
@@ -75,8 +75,8 @@ const AuctionCarousel = ({
                   <div className="w-full">
                     <motion.img src={auc.image} />
                   </div>
-                  <div className="absolute bottom-10 left-0 right-0 mx-auto w-10/12">
-                    <div className="text-4xl text-center bg-black/20 rounded-md py-6 text-white">
+                  <div className="absolute bottom-4 left-0 right-0 mx-auto w-10/12">
+                    <div className="text-xl text-center bg-black/20 rounded-md py-2 text-white">
                       6h:18mins:15s
                     </div>
                   </div>
