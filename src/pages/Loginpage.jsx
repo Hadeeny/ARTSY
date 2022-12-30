@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
-import { currentUser } from "../features/productSlice";
+// import { currentUser } from "../features/productSlice";
 import { app } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +27,7 @@ const Loginpage = () => {
       window.history.back();
     }
   }, [user]);
-  dispatch(currentUser(user));
+  // dispatch(currentUser(user));
   return (
     <div>
       <form

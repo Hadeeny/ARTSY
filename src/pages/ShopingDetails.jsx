@@ -7,6 +7,9 @@ import {motion} from 'framer-motion'
 import {useState} from 'react'
 import {userDetails} from '../features/userSlice'
 import {Link} from 'react-router-dom'
+import { useAuthState } from "react-firebase-hooks/auth";
+import { app } from "../firebase";
+import { getAuth } from "firebase/auth";
 
 const ShopingDetails = () => {
   const { cartItems, products } = useSelector((state) => state.product);
@@ -42,8 +45,10 @@ const handleProceed= (e) => {
   }))
   navigate('/payment')
 }
+const auth = getAuth(app);
+const [user] = useAuthState(auth);
 
-const { user } = useSelector((state) => state.product);
+// const { user } = useSelector((state) => state.product);
   
   return (
     <>

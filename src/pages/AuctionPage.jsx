@@ -6,12 +6,16 @@ import like from "../assets/like.svg";
 import { collection, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import { getAuth } from "firebase/auth";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { app } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 const AuctionPage = () => {
-  const { user } = useSelector((state) => state.product);
-  const bid1CollectionRef = collection(db, "Bid1");
+  const auth = getAuth(app);
+
+  // const { user } = useSelector((state) => state.product);
+  const bid1CollectionRef = collection(db, "Bid1"); 
   const bid2CollectionRef = collection(db, "Bid2");
   const bid3CollectionRef = collection(db, "Bid3");
 
@@ -23,7 +27,7 @@ const AuctionPage = () => {
   const [bid2] = useCollectionData(query2, { idField: "id" });
   const [bid3] = useCollectionData(query3, { idField: "id" });
   // console.log(message);
-
+  const [user] = useAuthState(auth);
   return (
     <>
       {user != null ? (
