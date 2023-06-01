@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import slide1 from "../assets/slideImg1.png";
 import arrow from "../assets/arrow.svg";
 
@@ -49,14 +50,14 @@ const Upcoming = () => {
         </div>
       </section>
       <section className="w-full my-14">
-        <div className="px-4 md:px-10 cursor-pointer hover:px-16 duration-500 py-6 border border-transparent border-t-black border-b-black flex justify-between">
+        <Link to={"/marketplace"} className="px-4 md:px-10 cursor-pointer hover:px-16 duration-500 py-6 border border-transparent border-t-black border-b-black flex justify-between">
           <h2 className="text-2xl font-semibold">Explore marketplace</h2>
           <img src={arrow} />
-        </div>
-        <div className="px-4 md:px-10 cursor-pointer hover:px-16 duration-500 py-6 border border-transparent border-b-black flex justify-between">
+        </Link>
+        <Link to={"/marketplace"} className="px-4 md:px-10 cursor-pointer hover:px-16 duration-500 py-6 border border-transparent border-b-black flex justify-between">
           <h2 className="text-2xl font-semibold">Explore marketplace</h2>
           <img src={arrow} />
-        </div>
+        </Link>
       </section>
     </>
   );
