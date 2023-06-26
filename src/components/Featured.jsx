@@ -8,6 +8,7 @@ import user4 from "../assets/user4.png";
 import user5 from "../assets/user5.png";
 import smallcircle from "../assets/smallcircle.svg";
 import arrow from "../assets/arrow.svg";
+import { Link } from "react-router-dom";
 
 const Featured = () => {
   return (
@@ -49,7 +50,8 @@ const Featured = () => {
             <div className="px-2 w-[10rem]">
               <h4 className="">64 major creators</h4>
             </div>
-            <div
+            <Link
+              to={"/marketplace/"}
               className="flex md:relative absolute top-[30%] md:left-10 
             md:-top-1 right-10 cursor-pointer"
             >
@@ -59,7 +61,7 @@ const Featured = () => {
                 className="absolute md:fill-white left-2 top-4 "
                 src={arrow}
               />
-            </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -94,7 +96,8 @@ const Featured = () => {
             <div className="px-2 w-[10rem]">
               <h4 className="">64 major creators</h4>
             </div>
-            <div
+            <Link
+              to={"/marketplace"}
               className="flex md:relative absolute top-[30%] md:left-10 
             md:-top-1 right-10 cursor-pointer"
             >
@@ -104,7 +107,7 @@ const Featured = () => {
                 className="absolute md:fill-white left-2 top-4 "
                 src={arrow}
               />
-            </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -139,7 +142,8 @@ const Featured = () => {
             <div className="px-2 w-[10rem]">
               <h4 className="">64 major creators</h4>
             </div>
-            <div
+            <Link
+              to={"/marketplace"}
               className="flex md:relative absolute top-[30%] md:left-10 
             md:-top-1 right-10 cursor-pointer"
             >
@@ -149,7 +153,7 @@ const Featured = () => {
                 className="absolute md:fill-white left-2 top-4 "
                 src={arrow}
               />
-            </div>
+            </Link>
           </div>
         </div>
       </div>

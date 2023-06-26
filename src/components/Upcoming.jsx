@@ -37,12 +37,15 @@ const Upcoming = () => {
                   </div>
                 </div>
                 <div className="space-x-8">
-                  <a href="#" className="underline">
+                  <Link to={"/auction"} className="underline">
                     See more
-                  </a>
-                  <button className="px-6 py-2 border rounded-md border-white">
+                  </Link>
+                  <Link
+                    to={"/drops"}
+                    className="px-6 py-2 border rounded-md border-white"
+                  >
                     Set reminder
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -50,11 +53,17 @@ const Upcoming = () => {
         </div>
       </section>
       <section className="w-full my-14">
-        <Link to={"/marketplace"} className="px-4 md:px-10 cursor-pointer hover:px-16 duration-500 py-6 border border-transparent border-t-black border-b-black flex justify-between">
+        <Link
+          to={"/marketplace"}
+          className="px-4 md:px-10 cursor-pointer hover:px-16 duration-500 py-6 border border-transparent border-t-black border-b-black flex justify-between"
+        >
           <h2 className="text-2xl font-semibold">Explore marketplace</h2>
           <img src={arrow} />
         </Link>
-        <Link to={"/marketplace"} className="px-4 md:px-10 cursor-pointer hover:px-16 duration-500 py-6 border border-transparent border-b-black flex justify-between">
+        <Link
+          to={"/marketplace"}
+          className="px-4 md:px-10 cursor-pointer hover:px-16 duration-500 py-6 border border-transparent border-b-black flex justify-between"
+        >
           <h2 className="text-2xl font-semibold">Explore marketplace</h2>
           <img src={arrow} />
         </Link>
